@@ -37,19 +37,15 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\CommandHandlerException.cs" />
-    <Compile Include="Commands\CommandResult.cs" />
+    <Compile Include="Commands\Impl\CommandResult.cs" />
     <Compile Include="Commands\CommandResultType.cs" />
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Commands\ICommandHandler.cs" />
     <Compile Include="Commands\ICommandHandlerFactory.cs" />
+    <Compile Include="Commands\ICommandResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queries\ICriterion.cs" />
     <Compile Include="Queries\Impl\NullCriterion.cs" />

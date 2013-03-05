@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace DevLib.Infrastructure.Commands
+namespace DevLib.Infrastructure.Commands.Impl
 {
-    public class CommandResult
+    public class CommandResult : ICommandResult
     {
         public CommandResult()
         {

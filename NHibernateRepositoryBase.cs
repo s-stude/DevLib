@@ -4,7 +4,7 @@ using NHibernate;
 
 namespace DevLib.Infrastructure.NHibernate
 {
-    public abstract class NHibernateRepositoryBase<TEntity> : IRepository<TEntity>
+    public class NHibernateRepositoryBase<TEntity> : IRepository<TEntity>
         where TEntity : IEntity
     {
         private readonly ISessionProvider _sessionProvider;
@@ -13,12 +13,12 @@ namespace DevLib.Infrastructure.NHibernate
         ///</summary>
         ///<param name="sessionProvider"></param>
         /// <exception cref="ArgumentNullException"><c>sessionProvider</c> is null.</exception>
-        protected NHibernateRepositoryBase(ISessionProvider sessionProvider)
+        public NHibernateRepositoryBase(ISessionProvider sessionProvider)
         {
             if (sessionProvider == null)
                 throw new ArgumentNullException("sessionProvider");
 
-            this._sessionProvider = sessionProvider;
+            _sessionProvider = sessionProvider;
         }
 
         protected ISession Session

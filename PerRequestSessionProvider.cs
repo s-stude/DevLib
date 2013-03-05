@@ -1,4 +1,5 @@
 ﻿using System;
+using JetBrains.Annotations;
 using NHibernate;
 
 namespace DevLib.Infrastructure.NHibernate
@@ -6,6 +7,7 @@ namespace DevLib.Infrastructure.NHibernate
     /// <summary>
     /// Провайдер для сессии на запрос.
     /// </summary>
+    [UsedImplicitly]
     public class PerRequestSessionProvider : ISessionProvider, IDisposable
     {
         private readonly ISessionFactory _sessionFactory;

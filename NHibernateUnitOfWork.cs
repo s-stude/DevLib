@@ -6,7 +6,7 @@ using NHibernate.Context;
 
 namespace DevLib.Infrastructure.NHibernate
 {
-    internal class NHibernateUnitOfWork : IUnitOfWork
+    public class NHibernateUnitOfWork : IUnitOfWork
     {
         private readonly ISession _session;
         private ITransaction _transaction;

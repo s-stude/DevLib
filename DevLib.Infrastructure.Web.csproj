@@ -37,6 +37,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandsController.cs" />
+    <Compile Include="Security\AccountEntry.cs" />
+    <Compile Include="Security\CustomAutentificationModule.cs" />
+    <Compile Include="Security\CustomAuthorizeAttribute.cs" />
+    <Compile Include="Security\CustomIdentity.cs" />
+    <Compile Include="Security\FormsUser.cs" />
+    <Compile Include="Security\Impl\FormsAuthenticationService.cs" />
+    <Compile Include="Security\IAuthenticationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -45,6 +52,7 @@
       <Name>DevLib.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

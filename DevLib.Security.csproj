@@ -40,7 +40,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\Password.cs" />
+    <Compile Include="Entities\SocialNetworkAccount.cs" />
+    <Compile Include="Entities\User.cs" />
+    <Compile Include="Enums\SocialAuthProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DevLib.Domain\DevLib.Domain.csproj">
+      <Project>{6ED63AEB-3BAC-4A16-8911-170AC37556F1}</Project>
+      <Name>DevLib.Domain</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

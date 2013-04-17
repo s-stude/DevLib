@@ -1,26 +1,32 @@
 ﻿using System;
 using System.Linq;
 using System.Security.Cryptography;
+using DevLib.Domain;
 
 namespace DevLib.Security.Entities
 {
-    public class Password
+    public class Password : IEntity
     {
+        public virtual int Id { get; protected set; }
+        public virtual byte[] PasswordKey { get; protected set; }
+        public virtual byte[] PasswordSalt { get; protected set; }
+        public virtual User User { get; protected set; }
+
         const int SaltSize = 20; // derive a 20-byte key
 
         [Obsolete]
-        public Password()
+        protected Password()
         {
         }
 
-        public Password(string password)
+        public Password(User user, string password)
             : this()
         {
+            if (user == null) throw new ArgumentNullException("user");
+            User = user;
+
             ProcessInputPassword(password);
         }
-
-        public virtual byte[] PasswordKey { get; protected set; }
-        public virtual byte[] PasswordSalt { get; protected set; }
 
         private void ProcessInputPassword(string password)
         {

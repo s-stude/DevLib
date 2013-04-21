@@ -13,7 +13,7 @@ namespace DevLib.Infrastructure.Web.Security.Impl
             var accountEntry = new AccountEntry(formsUser);
 
             var authTicket = new FormsAuthenticationTicket(1,
-                                                           formsUser.Login,
+                                                           accountEntry.Id.ToString(),
                                                            DateTime.Now,
                                                            DateTime.Now.AddMinutes(45),
                                                            createPersistentCookie,

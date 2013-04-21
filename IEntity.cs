@@ -1,7 +1,9 @@
+using System;
+
 namespace DevLib.Domain
 {
     public interface IEntity
     {
-        int Id { get; }
+        Guid Id { get; }
     }
 }

@@ -32,8 +32,16 @@ namespace DevLib.Infrastructure.NHibernate
         {
             return Session.Get<TEntity>(id);
         }
+        public virtual TEntity Get(Guid id)
+        {
+            return Session.Get<TEntity>(id);
+        }
 
         public TEntity Load(int id)
+        {
+            return Session.Load<TEntity>(id);
+        }
+        public TEntity Load(Guid id)
         {
             return Session.Load<TEntity>(id);
         }

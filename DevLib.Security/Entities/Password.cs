@@ -7,7 +7,7 @@ namespace DevLib.Security.Entities
 {
     public class Password : IEntity
     {
-        public virtual Guid Id { get; protected set; }
+        public virtual int Id { get; protected set; }
         public virtual byte[] PasswordKey { get; protected set; }
         public virtual byte[] PasswordSalt { get; protected set; }
         public virtual User User { get; protected set; }

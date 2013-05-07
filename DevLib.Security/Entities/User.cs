@@ -10,7 +10,7 @@ namespace DevLib.Security.Entities
     {
         private readonly ICollection<SocialNetworkAccount> _socialNetworkAccounts;
 
-        public virtual Guid Id { get; protected set; }
+        public virtual int Id { get; protected set; }
         public virtual string Login { get; protected set; }
         public virtual Password Password { get; protected set; }
         public virtual string DisplayName { get; protected set; }

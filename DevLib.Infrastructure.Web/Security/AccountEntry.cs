@@ -8,7 +8,7 @@ namespace DevLib.Infrastructure.Web.Security
     [Serializable]
     public class AccountEntry
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public string Login { get; set; }
 
         public AccountEntry()

@@ -18,5 +18,10 @@
         {
             return _queryFactory.Create<T, NullCriterion>().Ask(new NullCriterion());
         }
+
+        public T WithIdCriterion(int id)
+        {
+            return _queryFactory.Create<T, IdCriterion>().Ask(new IdCriterion(id));
+        }
     }
 }

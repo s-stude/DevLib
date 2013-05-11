@@ -48,6 +48,7 @@
     <Compile Include="Commands\ICommandResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queries\ICriterion.cs" />
+    <Compile Include="Queries\Impl\IdCriterion.cs" />
     <Compile Include="Queries\Impl\NullCriterion.cs" />
     <Compile Include="Queries\Impl\QueryFor.cs" />
     <Compile Include="Queries\IQuery.cs" />

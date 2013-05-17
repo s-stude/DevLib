@@ -23,13 +23,20 @@ namespace DevLib.Security.Entities
             : this()
         {
             if (user == null) throw new ArgumentNullException("user");
-            User = user;
 
+            if (string.IsNullOrWhiteSpace(password))
+                throw new ArgumentNullException("password", "String is null or empty");
+
+            User = user;
+            
             ProcessInputPassword(password);
         }
 
         private void ProcessInputPassword(string password)
         {
+            if (string.IsNullOrWhiteSpace(password))
+                throw new ArgumentNullException("password", "String is null or empty");
+
             using (var deriveBytes = new Rfc2898DeriveBytes(password, SaltSize))
             {
                 PasswordSalt = deriveBytes.Salt;
@@ -37,8 +44,16 @@ namespace DevLib.Security.Entities
             }
         }
 
+        public virtual void Change(string newPassword)
+        {
+            ProcessInputPassword(newPassword);
+        }
+
         public virtual bool Verify(string passwordToVerify)
         {
+            if (string.IsNullOrWhiteSpace(passwordToVerify))
+                throw new ArgumentNullException("passwordToVerify", "String is null or empty");
+
             using (var deriveBytes = new Rfc2898DeriveBytes(passwordToVerify, PasswordSalt))
             {
                 byte[] newKey = deriveBytes.GetBytes(SaltSize);

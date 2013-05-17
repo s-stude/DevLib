@@ -21,7 +21,7 @@ namespace DevLib.Security.Entities
         {
             get { return _socialNetworkAccounts; }
         }
-        
+
         protected User()
         {
             _socialNetworkAccounts = new List<SocialNetworkAccount>();
@@ -37,9 +37,16 @@ namespace DevLib.Security.Entities
 
         public virtual void SetPassword(string newPassword)
         {
-            if (string.IsNullOrWhiteSpace(newPassword) == false)
+            if (string.IsNullOrWhiteSpace(newPassword))
+                throw new ArgumentNullException("newPassword", "Password is null or empty");
+
+            if (Password == null)
             {
                 Password = new Password(this, newPassword);
+            }
+            else
+            {
+                Password.Change(newPassword);
             }
         }
 

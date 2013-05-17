@@ -20,6 +20,20 @@ namespace DevLib.Infrastructure.Web
         {
             return Handle(command, () => onSuccess, () => onFailure);
         }
+        
+        protected ActionResult Handle<TCommand>(TCommand command, 
+            ActionResult onSuccess, ActionResult onFailure, ViewResult onSuccessView)
+            where TCommand : ICommand
+        {
+            return Handle(command, () => onSuccess, () => onFailure, onSuccessView);
+        }
+        
+        protected ActionResult Handle<TCommand>(TCommand command, 
+            ActionResult onSuccess, ActionResult onFailure, ViewResult onSuccessView, ViewResult onFailureView)
+            where TCommand : ICommand
+        {
+            return Handle(command, () => onSuccess, () => onFailure, onSuccessView, onFailureView);
+        }
 
         protected ActionResult Handle<TCommand>(TCommand command, Func<ActionResult> onSuccess)
             where TCommand : ICommand
@@ -30,8 +44,9 @@ namespace DevLib.Infrastructure.Web
             return Handle(command, onSuccess, () => RedirectToAction(actionName, controllerName));
         }
 
-        protected ActionResult Handle<TCommand>(TCommand command, Func<ActionResult> onSuccess, Func<ActionResult> onFailure)
-            where TCommand : ICommand
+        protected ActionResult Handle<TCommand>(TCommand command, 
+            Func<ActionResult> onSuccess, Func<ActionResult> onFailure,
+            ViewResult onSuccessView = null, ViewResult onFailureView = null) where TCommand : ICommand
         {
             if (ModelState.IsValid)
             {
@@ -39,6 +54,9 @@ namespace DevLib.Infrastructure.Web
                 {
                     var handler = CommandHandlerFactory.Create<TCommand>();
                     handler.Handle(command);
+
+                    if (onSuccessView != null)
+                        TempData[WebUIAlerts.OnSuccessViewNameTempDataKey] = onSuccessView.ViewName;
 
                     return onSuccess();
                 }
@@ -49,6 +67,10 @@ namespace DevLib.Infrastructure.Web
             }
 
             TempData[ModelStateKey] = ModelState;
+
+            if (onFailureView != null)
+                TempData[WebUIAlerts.OnFailureViewNameTempDataKey] = onFailureView.ViewName;
+
             return onFailure();
         }
 
@@ -56,7 +78,7 @@ namespace DevLib.Infrastructure.Web
         {
             if (TempData[ModelStateKey] != null && ModelState.Equals(TempData[ModelStateKey]) == false)
                 ModelState.Merge((ModelStateDictionary) TempData[ModelStateKey]);
-            
+
             base.OnActionExecuted(filterContext);
         }
     }
